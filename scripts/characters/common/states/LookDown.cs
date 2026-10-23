@@ -1,22 +1,20 @@
 using Godot;
 using System;
 
-public partial class BalanceBase : State
+public partial class LookDown : State
 {
 	public override void Enter()
 	{
 		character.Velocity = Vector2.Zero;
-		character.AnimPlayer.Play("balance");
+		character.AnimPlayer.Play("look_down_startup");
 	}
 
-		public override void PhysicsUpdate(float delta)
+	public override void PhysicsUpdate(float delta)
 	{
 		var input = character.InputData;
 
-		if (!character.LeftEdgeSensor.IsColliding())
-			character.UpdateFlipH(1);
-		else if (!character.RightEdgeSensor.IsColliding())
-			character.UpdateFlipH(-1);
+		if (character.AnimationFinished())
+			character.AnimPlayer.Play("look_down");
 
 		if (input.Jump && character.IsOnFloor())
 		{
@@ -30,9 +28,15 @@ public partial class BalanceBase : State
 			return;
 		}
 
-		if (character.EdgeDetection() == 0)
+		if (input.Move.Y == 0)
 		{
 			fsm.TransitionTo("Idle");
+			return;
+		}
+
+		if (input.Move.Y < 0)
+		{
+			fsm.TransitionTo("LookUp");
 			return;
 		}
 	}

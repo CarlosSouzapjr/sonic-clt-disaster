@@ -1,17 +1,20 @@
 using Godot;
 using System;
 
-public partial class IdleBase : State
+public partial class LookUp : State
 {
 	public override void Enter()
 	{
 		character.Velocity = Vector2.Zero;
-		character.AnimPlayer.Play("idle");
+		character.AnimPlayer.Play("look_up_startup");
 	}
 
 	public override void PhysicsUpdate(float delta)
 	{
 		var input = character.InputData;
+
+		if (character.AnimationFinished())
+			character.AnimPlayer.Play("look_up");
 
 		if (input.Jump && character.IsOnFloor())
 		{
@@ -25,9 +28,9 @@ public partial class IdleBase : State
 			return;
 		}
 
-		if (input.Move.Y < 0)
+		if (input.Move.Y == 0)
 		{
-			fsm.TransitionTo("LookUp");
+			fsm.TransitionTo("Idle");
 			return;
 		}
 
@@ -36,11 +39,6 @@ public partial class IdleBase : State
 			fsm.TransitionTo("LookDown");
 			return;
 		}
-
-		if (character.EdgeDetection() != 0)
-		{
-			fsm.TransitionTo("Balance");
-			return;
-		}
 	}
+
 }

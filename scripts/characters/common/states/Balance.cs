@@ -1,20 +1,22 @@
 using Godot;
 using System;
 
-public partial class LookUpBase : State
+public partial class Balance : State
 {
 	public override void Enter()
 	{
 		character.Velocity = Vector2.Zero;
-		character.AnimPlayer.Play("look_up_startup");
+		character.AnimPlayer.Play("balance");
 	}
 
-	public override void PhysicsUpdate(float delta)
+		public override void PhysicsUpdate(float delta)
 	{
 		var input = character.InputData;
 
-		if (character.AnimationFinished())
-			character.AnimPlayer.Play("look_up");
+		if (!character.LeftEdgeSensor.IsColliding())
+			character.UpdateFlipH(1);
+		else if (!character.RightEdgeSensor.IsColliding())
+			character.UpdateFlipH(-1);
 
 		if (input.Jump && character.IsOnFloor())
 		{
@@ -28,15 +30,9 @@ public partial class LookUpBase : State
 			return;
 		}
 
-		if (input.Move.Y == 0)
+		if (character.EdgeDetection() == 0)
 		{
 			fsm.TransitionTo("Idle");
-			return;
-		}
-
-		if (input.Move.Y > 0)
-		{
-			fsm.TransitionTo("LookDown");
 			return;
 		}
 	}

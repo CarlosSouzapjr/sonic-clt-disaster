@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://h54gqx7bd4xo"]
 
-[ext_resource type="PackedScene" uid="uid://bosb1as12hvm4" path="res://scenes/characters/survivors/shadow.tscn" id="2_8kaqf"]
+[ext_resource type="PackedScene" uid="uid://bosb1as12hvm4" path="res://scenes/characters/survivors/shadow/shadow.tscn" id="2_8kaqf"]
 [ext_resource type="Texture2D" uid="uid://brt0p12dmix8v" path="res://assets/stages/test_stage/tilemap/tiles01.png" id="2_q6b3p"]
 [ext_resource type="Texture2D" uid="uid://uiumvpqhlfjs" path="res://assets/stages/test_stage/tilemap/tiles.png" id="3_8kaqf"]
 [ext_resource type="Texture2D" uid="uid://c1vagutqkidg1" path="res://assets/stages/test_stage/tilemap/tile_test.png" id="4_q6b3p"]

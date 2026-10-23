@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerRootBase : Node
+public partial class PlayerRoot : Node
 {
 	public Character character { get; private set; }
 	public StateMachine FSM { get; private set; }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RunBase : State
+public partial class Run : State
 {
 	public override void Enter()
 	{

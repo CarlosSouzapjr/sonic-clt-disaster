@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class JumpBase : State
+public partial class Jump : State
 {
 	public override void Enter()
 	{

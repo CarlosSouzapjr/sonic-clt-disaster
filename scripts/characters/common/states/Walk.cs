@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class WalkBase : State
+public partial class Walk : State
 {
 	private float acceleration;
 	

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class CameraPivotController : Node2D
+public partial class CameraPivot : Node2D
 {
 	[Export] public float FollowSpeedX = 700f;
 	[Export] public float FollowSpeedY = 700f;
