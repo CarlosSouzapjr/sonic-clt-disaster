@@ -4,16 +4,35 @@ using System;
 
 public abstract partial class Character : CharacterBody2D
 {
-	[Export] public float AccelerationConst = 0.046875f * 60f * 60f; // ~= px/s²
-	[Export] public float AirAccelerationConst = 0.09375f * 60f * 60f;
-	[Export] public float DesaccelerationConst = 0.5f * 60f * 60f * 0.5f;
-	[Export] public float GravityForce = 0.21875f * 60f * 60f;
-	[Export] public float FrictionDesaccelerationConst = 0.046875f * 60f * 60f;
-	[Export] public float MaxSpeed = 6f * 60f; // px/s
-	[Export] public float MaxFallSpeed = 6f * 60f;
-	[Export] public float BreakSpeed = 4f * 60f; // Speed required for break animation
+	// Conversion from px/frame to px/s, using a fixed 60 FPS reference.
+	private const float speed = 60f;
+
+	// Conversion from px/frame² to px/s², using a fixed 60 FPS reference.
+	private const float acceleration = 60f * 60f;
+
+	[ExportGroup("Movement Multipliers")]
+	[Export] public float AccelerationMultiplier = 0.046875f;
+	[Export] public float AirAccelerationMultiplier = 0.09375f;
+	[Export] public float BrakingMultiplier = 0.25f;
+	[Export] public float FrictionMultiplier = 0.046875f;
+	[Export] public float GravityMultiplier = 0.21875f;
+	[Export] public float MaxSpeedMultiplier = 6f;
+	[Export] public float MaxFallSpeedMultiplier = 6f;
+	[Export] public float BrakingThresholdMultiplier = 4f;
+
+	[ExportGroup("Jump")]
 	[Export] public float JumpHeight = 64f; // px
 	[Export] public float CoyoteTimeWindow = 0.12f; // seconds
+
+	// Converted values used by movement: px/s² for accelerations, px/s for speeds.
+	public float AccelerationConst => AccelerationMultiplier * acceleration;
+	public float AirAccelerationConst => AirAccelerationMultiplier * acceleration;
+	public float DesaccelerationConst => BrakingMultiplier * acceleration;
+	public float FrictionDesaccelerationConst => FrictionMultiplier * acceleration;
+	public float GravityForce => GravityMultiplier * acceleration;
+	public float MaxSpeed => MaxSpeedMultiplier * speed;
+	public float MaxFallSpeed => MaxFallSpeedMultiplier * speed;
+	public float BreakSpeed => BrakingThresholdMultiplier * speed;
 	
 	public float CoyoteTimer = 0f;
 	public float JumpForce;

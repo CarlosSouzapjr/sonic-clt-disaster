@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://h54gqx7bd4xo"]
+[gd_scene load_steps=10 format=4 uid="uid://h54gqx7bd4xo"]
 
 [ext_resource type="PackedScene" uid="uid://bosb1as12hvm4" path="res://scenes/characters/survivors/shadow/shadow.tscn" id="2_8kaqf"]
 [ext_resource type="Texture2D" uid="uid://brt0p12dmix8v" path="res://assets/stages/test_stage/tilemap/tiles01.png" id="2_q6b3p"]
 [ext_resource type="Texture2D" uid="uid://uiumvpqhlfjs" path="res://assets/stages/test_stage/tilemap/tiles.png" id="3_8kaqf"]
 [ext_resource type="Texture2D" uid="uid://c1vagutqkidg1" path="res://assets/stages/test_stage/tilemap/tile_test.png" id="4_q6b3p"]
+
+[ext_resource type="Script" uid="uid://dwf4xmm5svtg0" path="res://scripts/stages/TestStage.cs" id="5_restart"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_txm6t"]
 texture = ExtResource("2_q6b3p")
@@ -12128,6 +12130,7 @@ sources/4 = SubResource("TileSetAtlasSource_8gf4l")
 sources/0 = SubResource("TileSetAtlasSource_txm6t")
 
 [node name="test_stage" type="Node2D"]
+script = ExtResource("5_restart")
 
 [node name="Shadow" parent="." instance=ExtResource("2_8kaqf")]
 position = Vector2(58, 295)
