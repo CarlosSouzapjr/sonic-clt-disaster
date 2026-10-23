@@ -1,0 +1,34 @@
+# Godot 4: cache e arquivos gerados
+.godot/
+.mono/
+
+# Templates de compilação Android gerados
+/android/
+
+# C# / .NET: resultados de compilação
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Configurações locais dos editores e launcher
+.vscode/
+.idea/
+.godotlauncher
+
+# Pastas de destino das exportações
+/builds/
+/exports/
+
+# Backups e arquivos temporários
+*.csproj.old
+*.tmp
+*.swp
+*~
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
