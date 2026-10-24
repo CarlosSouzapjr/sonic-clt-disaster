@@ -49,7 +49,9 @@ public abstract partial class Character : CharacterBody2D
 	
 	public override void _Ready()
 	{
-	 	JumpForce = -Mathf.Sqrt(2f * GravityForce * JumpHeight); // jump = sqrt(2*g*h) -> g = gravity, h = max_heigh
+	 	JumpForce = -Mathf.Sqrt(
+			2f * GravityForce * JumpHeight
+			); // jump = sqrt(2*g*h) -> g = gravity, h = max_heigh
 		
 		// Getting visual node
 		Visual = GetNode<Node2D>("Visual");
